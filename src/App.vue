@@ -1,17 +1,34 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <p>
+      Show All
+      <input type="checkbox" name="vehicle" value="Bike" @change="showAllFunc">
+    </p>
+    <data-table :list="movieList" :showAll="showAll" :key="showAll"/>
+    
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import DataTable from "./components/DataTable.vue";
+const movie = require("./assets/movie.json");
 
 export default {
   name: "app",
+  data() {
+    return {
+      movieList: movie,
+      showAll: false
+    };
+  },
   components: {
-    HelloWorld
+    DataTable
+  },
+
+  methods: {
+    showAllFunc() {
+      this.showAll = !this.showAll;
+    }
   }
 };
 </script>
